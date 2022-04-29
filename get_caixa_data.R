@@ -1,4 +1,4 @@
-#### Código para importação dos imóveis disponíveis pela caixa
+#### Código para importação dos imóveis disponíveis pela caixa (leilão)
 #### Marcos André Diniz
 #### Fevereiro de 2022
 
