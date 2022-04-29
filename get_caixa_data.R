@@ -69,8 +69,9 @@ get_caixa_data <- function(estado_busca){
     
     # converte variáveis para numérico
     mutate(preco = parse_number(preco, locale = locale(decimal_mark = ",")),
-           valor_avaliacao = parse_number(valor_avaliacao, locale = locale(decimal_mark = ",")),
-           row_number = as.integer(rownames(.)))
+           valor_avaliacao = parse_number(valor_avaliacao, locale = locale(decimal_mark = ","))
+          )
+  )
   
   return(imoveis_caixa)
   
