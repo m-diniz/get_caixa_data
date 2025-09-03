@@ -23,7 +23,15 @@ baixar_dados_caixa <- function(estado, salvar_csv = FALSE, arquivo_saida = NULL)
       return(NULL)
     }
     
-    dados_df <- readr::read_csv2(conteudo_raw, locale = locale(encoding = "latin1"), show_col_types = FALSE)
+    # Converte o conteúdo bruto para linhas de texto
+    linhas_texto <- readr::read_lines(conteudo_raw, locale = locale(encoding = "latin1"))
+    
+    # Remove as duas primeiras linhas e as linhas em branco
+    linhas_filtradas <- linhas_texto[-c(1, 2)]
+    linhas_filtradas <- linhas_filtradas[trimws(linhas_filtradas) != ""]
+    
+    # Lê os dados a partir das linhas filtradas
+    dados_df <- readr::read_csv2(paste(linhas_filtradas, collapse = "\n"), show_col_types = FALSE)
     
     cat("Download e importação concluídos. ", nrow(dados_df), " registros importados.\n")
     
